@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 
-class DriveAPIService {
+class DriveAPI {
     private final JsonFactory jsonFactory;
     private final HttpTransport httpTransport;
     private final InputStream credentialsResourceStream;
@@ -31,7 +31,7 @@ class DriveAPIService {
 
     private final Credential credential;
 
-    private DriveAPIService(Builder builder) throws IOException {
+    private DriveAPI(Builder builder) throws IOException {
         this.jsonFactory = builder.jsonFactory;
         this.httpTransport = builder.httpTransport;
         this.credentialsResourceStream = builder.credentialsResourceStream;
@@ -89,11 +89,11 @@ class DriveAPIService {
             return this;
         }
 
-        DriveAPIService build() throws IOException, GeneralSecurityException {
+        DriveAPI build() throws IOException, GeneralSecurityException {
             if(httpTransport == null) {
                 httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             }
-            return new DriveAPIService(this);
+            return new DriveAPI(this);
         }
     }
 
@@ -108,7 +108,7 @@ class DriveAPIService {
         return new AuthorizationCodeInstalledApp(authorizationCodeFlow, receiver).authorize(userId);
     }
 
-    Drive getDriveAPIService(Credential credential) {
+    Drive getDriveAPI() {
         return new Drive.Builder(httpTransport, jsonFactory, credential).setApplicationName(applicationName).build();
     }
 }

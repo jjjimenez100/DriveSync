@@ -1,4 +1,4 @@
-package com.jjjimenez.drivesync;
+package com.jjjimenez.drivesync.watcher;
 
 import java.io.IOException;
 import java.nio.file.*;
