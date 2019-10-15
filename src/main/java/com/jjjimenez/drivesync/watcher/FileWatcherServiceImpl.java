@@ -8,11 +8,11 @@ import java.util.Map;
 
 import static java.nio.file.StandardWatchEventKinds.*;
 
-final class DirectoryWatcher {
+final class FileWatcherServiceImpl {
     private final Map<Path, WatchKey> watchedPaths;
     private final WatchService fileSystemWatchService;
 
-    DirectoryWatcher() throws IOException {
+    FileWatcherServiceImpl() throws IOException {
         watchedPaths = new HashMap<>();
         fileSystemWatchService = FileSystems.getDefault().newWatchService();
     }
