@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-class UploadServiceProgressListener implements MediaHttpUploaderProgressListener {
+final class UploadServiceProgressListener implements MediaHttpUploaderProgressListener {
     private static final Logger logger = LoggerFactory.getLogger(UploadServiceProgressListener.class);
 
     @Override

@@ -21,6 +21,7 @@ final class UploadServiceImpl implements UploadService {
         this.uploaderProgressListener = uploaderProgressListener;
     }
 
+    @Override
     public File uploadFile(File file, FileContent fileContent, boolean resumableUpload) throws IOException {
         logger.info("Creating Drive file metadata");
         Drive.Files.Create create = drive.files().create(file, fileContent);
@@ -32,6 +33,7 @@ final class UploadServiceImpl implements UploadService {
         return create.execute();
     }
 
+    @Override
     public File updateFile(File file, FileContent fileContent, String fileId) throws IOException {
         logger.info("Updating Drive file metadata");
         Drive.Files.Update update = drive.files().update(fileId, file, fileContent);
