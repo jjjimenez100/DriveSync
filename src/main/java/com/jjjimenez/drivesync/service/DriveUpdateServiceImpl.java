@@ -20,12 +20,12 @@ final class DriveUpdateServiceImpl implements DriveUpdateService {
 
     @Override
     public Object updateFile(File file, FileContent fileContent, String fileId) throws IOException {
-        Drive.Files.Update update = drive.files().update(fileId, file, fileContent);
+        Drive.Files.Update updateRequest = drive.files().update(fileId, file, fileContent);
 
-        update.execute();
-        logger.info(update.getLastStatusCode() + " " + update.getLastStatusMessage());
+        updateRequest.execute();
+        logger.info(updateRequest.getLastStatusCode() + " " + updateRequest.getLastStatusMessage());
 
-        return update.getJsonContent();
+        return updateRequest.getJsonContent();
     }
 
     @Override

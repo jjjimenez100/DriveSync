@@ -24,16 +24,16 @@ final class DriveUploadServiceImpl implements DriveUploadService {
 
     @Override
     public Object uploadFile(File file, FileContent fileContent, boolean resumableUpload) throws IOException {
-        Drive.Files.Create create = drive.files().create(file, fileContent);
-        MediaHttpUploader uploader = create.getMediaHttpUploader();
+        Drive.Files.Create uploadRequest = drive.files().create(file, fileContent);
+        MediaHttpUploader uploader = uploadRequest.getMediaHttpUploader();
 
         uploader.setDirectUploadEnabled(resumableUpload);
         uploader.setProgressListener(uploaderProgressListener);
 
-        create.execute();
-        logger.info(create.getLastStatusCode() + " " + create.getLastStatusMessage());
+        uploadRequest.execute();
+        logger.info(uploadRequest.getLastStatusCode() + " " + uploadRequest.getLastStatusMessage());
 
-        return create.getJsonContent();
+        return uploadRequest.getJsonContent();
     }
 
     @Override
