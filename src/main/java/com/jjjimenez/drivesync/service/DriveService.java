@@ -9,12 +9,14 @@ public final class DriveService {
     private final DriveUploadService driveUploadService;
     private final DriveUpdateService driveUpdateService;
     private final DriveDeleteService driveDeleteService;
+    private final DriveDownloadService driveDownloadService;
 
     public DriveService(Drive drive) {
         this.drive = drive;
         this.driveUploadService = new DriveUploadServiceImpl(drive, new UploadServiceProgressListener());
         this.driveUpdateService = new DriveUpdateServiceImpl(drive);
         this.driveDeleteService = new DriveDeleteServiceImpl(drive);
+        this.driveDownloadService = new DriveDownloadServiceImpl(drive, new DownloadServiceProgressListener());
     }
 
     public Drive getDrive() {
@@ -33,6 +35,10 @@ public final class DriveService {
         return driveDeleteService;
     }
 
+    public DriveDownloadService getDriveDownloadService() {
+        return driveDownloadService;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,12 +47,13 @@ public final class DriveService {
         return drive.equals(that.drive) &&
                 driveUploadService.equals(that.driveUploadService) &&
                 driveUpdateService.equals(that.driveUpdateService) &&
-                driveDeleteService.equals(that.driveDeleteService);
+                driveDeleteService.equals(that.driveDeleteService) &&
+                driveDownloadService.equals(that.driveDownloadService);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(drive, driveUploadService, driveUpdateService, driveDeleteService);
+        return Objects.hash(drive, driveUploadService, driveUpdateService, driveDeleteService, driveDownloadService);
     }
 
     @Override
@@ -56,6 +63,7 @@ public final class DriveService {
                 ", driveUploadService=" + driveUploadService +
                 ", driveUpdateService=" + driveUpdateService +
                 ", driveDeleteService=" + driveDeleteService +
+                ", driveDownloadService=" + driveDownloadService +
                 '}';
     }
 }
