@@ -111,6 +111,7 @@ final class FileWatcherServiceImpl implements FileWatcherService {
                     modifyWatchStateListener.modifyStateChange();
                 } else {
                     logger.info("No provided state listeners.");
+                    return;
                 }
             }
             watchedFile.reset();
