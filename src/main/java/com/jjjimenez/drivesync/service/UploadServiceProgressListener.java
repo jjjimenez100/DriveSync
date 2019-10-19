@@ -1,4 +1,4 @@
-package com.jjjimenez.drivesync.upload;
+package com.jjjimenez.drivesync.service;
 
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
